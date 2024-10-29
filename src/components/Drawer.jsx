@@ -1,66 +1,37 @@
-function Drawer() {
+function Drawer({ onClose, items = [] }) {
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div style={{ display: "block" }} className="overlay">
       <div className="drawer">
         <h2 className="d-flex justify-between mb-30">
           Корзина
-          <img className="btn-remove" src="/img/btn-remove.svg" alt="Revove" />
+          <img
+            onClick={onClose}
+            className="btn-remove"
+            src="/img/btn-remove.svg"
+            alt="Revove"
+          />
         </h2>
 
         <div className="items">
-          <div className="cart-item d-flex align-center mb-20">
-            <div
-              style={{
-                backgroundImage: "url('/img/sneakers/1.jpg')",
-              }}
-              className="card-item-img"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Чоловічі кросівкі Nike Ait Max 70</p>
-              <b>1 270 грн.</b>
+          {items.map((obj) => (
+            <div className="cart-item d-flex align-center mb-20">
+              <div
+                style={{
+                  backgroundImage: `url(${obj.imageUrl})`,
+                }}
+                className="card-item-img"
+              ></div>
+              <div className="mr-20 flex">
+                <p className="mb-5">{obj.title}</p>
+                <b>{obj.price} грн.</b>
+              </div>
+              <img
+                className="btn-remove"
+                src="/img/btn-remove.svg"
+                alt="Revove"
+              />
             </div>
-            <img
-              className="btn-remove"
-              src="/img/btn-remove.svg"
-              alt="Revove"
-            />
-          </div>
-
-          <div className="cart-item d-flex align-center mb-20">
-            <div
-              style={{
-                backgroundImage: "url(/img/sneakers/2.jpg)",
-              }}
-              className="card-item-img"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Чоловічі кросівкі Nike Ait Max 270</p>
-              <b>1 270 грн.</b>
-            </div>
-            <img
-              className="btn-remove"
-              src="/img/btn-remove.svg"
-              alt="Revove"
-            />
-          </div>
-
-          <div className="cart-item d-flex align-center mb-20">
-            <div
-              style={{
-                backgroundImage: "url(/img/sneakers/3.jpg)",
-              }}
-              className="card-item-img"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Чоловічі кросівкі Nike Ait Max 270</p>
-              <b>1 270 грн.</b>
-            </div>
-            <img
-              className="btn-remove"
-              src="/img/btn-remove.svg"
-              alt="Revove"
-            />
-          </div>
+          ))}
         </div>
 
         <div className="cart-total-block">
