@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card/Card";
-import Drawer from "./components/Drawer";
-import Header from "./components/Header";
+import Drawer from "./components/Drawer/Drawer";
+import Header from "./components/Header/Header";
 
 function App() {
   const [sneakers, setSneakers] = useState([]);
@@ -17,8 +17,6 @@ function App() {
   const onAddToCart = (obj) => {
     setCartSneakers((prev) => [...prev, obj]);
   };
-
-  console.log(cartSneakers);
 
   return (
     <div className="wrapper clear">
@@ -37,8 +35,9 @@ function App() {
         </div>
 
         <div className="d-flex flex-wrap">
-          {sneakers.map((item) => (
+          {sneakers.map((item, index) => (
             <Card
+              key={index}
               title={item.title}
               price={item.price}
               imageUrl={item.imageUrl}
